@@ -1,0 +1,39 @@
+[dc1-k8s-masters]
+master01.rtslab.sg ansible_usehost=192.168.2.51
+
+[dc2-k8s-masters]
+master02.rtslab.sg ansible_usehost=192.168.2.52
+
+[dc3-k8s-masters]
+master03.rtslab.sg ansible_usehost=192.168.2.53
+
+[dc1-k8s-workers]
+wrknode01.rtslab.sg ansible_usehost=192.168.2.61
+
+[dc2-k8s-workers]
+wrknode02.rtslab.sg ansible_usehost=192.168.2.62
+
+[dc3-k8s-workers]
+wrknode03.rtslab.sg ansible_usehost=192.168.2.63
+
+[k8s-masters:children]
+dc1-k8s-masters
+dc2-k8s-masters
+dc3-k8s-masters
+
+[k8s-workers:children]
+dc1-k8s-workers
+dc2-k8s-workers
+dc3-k8s-workers
+
+[k8s-nodes:children]
+dc1-k8s-masters
+dc2-k8s-masters
+dc3-k8s-masters
+dc1-k8s-workers
+dc2-k8s-workers
+dc3-k8s-workers
+
+
+[all:vars]
+setup=private
