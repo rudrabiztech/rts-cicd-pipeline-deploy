@@ -37,3 +37,4 @@ dc3-k8s-workers
 
 [all:vars]
 setup=private
+docker_version=20.10.23
