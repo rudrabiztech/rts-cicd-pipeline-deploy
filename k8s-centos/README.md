@@ -11,3 +11,6 @@ Hostname
 192.168.2.62 wrknode02.rtslab.sg
 192.168.2.63 wrknode03.rtslab.sg
 ```
+
+rts             ALL=(ALL)       NOPASSWD: ALL
+
