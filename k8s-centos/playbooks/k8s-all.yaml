@@ -1,1 +1,2 @@
 - import_playbook: repos.yaml
+- import_playbook: ntpd.yaml
