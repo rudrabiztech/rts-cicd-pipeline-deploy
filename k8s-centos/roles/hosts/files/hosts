@@ -1,0 +1,12 @@
+#localhost
+127.0.0.1 localhost localhost.localdomain
+
+# k8s-master-nodes
+192.168.2.51 master01.rtslab.sg master01
+192.168.2.52 master02.rtslab.sg master02
+192.168.2.53 master03.rtslab.sg master03
+
+# k8s-master-nodes
+192.168.2.61 wrknode01.rtslab.sg wrknode01
+192.168.2.62 wrknode02.rtslab.sg wrknode02
+192.168.2.63 wrknode03.rtslab.sg wrknode03
