@@ -1,3 +1,4 @@
 - import_playbook: repos.yaml
+- import_playbook: hosts.yaml
 - import_playbook: ntpd.yaml
 - import_playbook: docker.yaml

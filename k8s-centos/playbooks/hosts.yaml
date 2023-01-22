@@ -1,5 +1,5 @@
 - hosts: k8s-nodes
   become: yes
   roles:
-    - ntpd
-  tags: ntpd
+    - hosts
+  tags: hosts
