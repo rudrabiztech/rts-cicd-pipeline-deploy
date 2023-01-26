@@ -2,3 +2,4 @@
 - import_playbook: hosts.yaml
 - import_playbook: ntpd.yaml
 - import_playbook: docker.yaml
+- import_playbook: kubeadm.yaml
