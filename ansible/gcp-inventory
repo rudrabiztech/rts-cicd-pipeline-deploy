@@ -1,0 +1,2 @@
+[all]
+docker-vm1 ansible_ssh_host=34.126.107.149 ansible_port=22 hostname=docker-vm1 app_environment=dev
