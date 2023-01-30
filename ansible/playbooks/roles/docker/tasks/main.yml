@@ -39,3 +39,10 @@
     name: "{{ ansible_user }}"
     groups: docker
     append: yes
+
+- name: Install docker-compose
+  apt:
+    pkg:
+      - docker-compose
+    state: latest
+    update_cache: true
