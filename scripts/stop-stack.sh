@@ -1,2 +1,2 @@
 #stop docker container
-docker-compose stop
+docker-compose --env-file ./config/.env.dev stop
