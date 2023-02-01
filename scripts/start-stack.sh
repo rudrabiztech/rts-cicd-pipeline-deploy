@@ -5,4 +5,4 @@ git pull origin main
 docker-compose --env-file ./config/.env.dev up -d --remove-orphans
 
 # start docker container nginx proxy manager in backgound
-docker-compose -f ./docker-compose-nginx.yaml up -d
+docker-compose -f ./docker-compose-nginx.yaml --env-file ./config/.env.dev up -d
