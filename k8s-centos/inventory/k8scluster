@@ -1,20 +1,20 @@
 [dc1-k8s-masters]
-master01.rtslab.sg ansible_usehost=34.87.82.1 hostname=master01.rtslab.sg
+master01.rtslab.sg hostname=master01.rtslab.sg
 
 [dc2-k8s-masters]
-master02.rtslab.sg ansible_usehost=34.126.107.149 hostname=master02.rtslab.sg
+master02.rtslab.sg hostname=master02.rtslab.sg
 
 [dc3-k8s-masters]
-master03.rtslab.sg ansible_usehost=35.187.232.53 hostname=master03.rtslab.sg
+master03.rtslab.sg hostname=master03.rtslab.sg
 
 [dc1-k8s-workers]
-worker01.rtslab.sg ansible_usehost=35.187.237.138 hostname=worker01.rtslab.sg
+worker01.rtslab.sg hostname=worker01.rtslab.sg
 
 [dc2-k8s-workers]
-worker02.rtslab.sg ansible_usehost=34.124.181.32 hostname=worker02.rtslab.sg
+worker02.rtslab.sg hostname=worker02.rtslab.sg
 
 [dc3-k8s-workers]
-worker03.rtslab.sg ansible_usehost=34.124.143.209 hostname=worker03.rtslab.sg
+worker03.rtslab.sg hostname=worker03.rtslab.sg
 
 [k8s-masters:children]
 dc1-k8s-masters
