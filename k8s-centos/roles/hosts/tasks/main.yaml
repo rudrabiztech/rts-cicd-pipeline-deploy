@@ -11,3 +11,7 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Set timezone to Asia/Singapore
+  community.general.timezone:
+    name: Asia/Singapore
