@@ -1,0 +1,26 @@
+- name: install ntpd
+  become: yes
+  yum:
+    name: ntp
+    state: present
+  register: ntpinstall
+
+- name: stop ntpd service
+  become: yes
+  service:
+    name: ntpd
+    state: stopped
+  when: ntpinstall.changed
+
+- name: sync time
+  become: yes
+  command: ntpd -gq
+  when: ntpinstall.changed
+
+- name: start ntpd service
+  become: yes
+  service:
+    name: ntpd
+    state: restarted
+    enabled: yes
+  when: ntpinstall.changed
