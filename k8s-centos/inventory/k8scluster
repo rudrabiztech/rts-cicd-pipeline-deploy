@@ -1,0 +1,39 @@
+[dc1-k8s-masters]
+master01.rtslab.sg hostname=master01.rtslab.sg
+
+[dc2-k8s-masters]
+master02.rtslab.sg hostname=master02.rtslab.sg
+
+[dc3-k8s-masters]
+master03.rtslab.sg hostname=master03.rtslab.sg
+
+[dc1-k8s-workers]
+worker01.rtslab.sg hostname=worker01.rtslab.sg
+
+[dc2-k8s-workers]
+worker02.rtslab.sg hostname=worker02.rtslab.sg
+
+[dc3-k8s-workers]
+worker03.rtslab.sg hostname=worker03.rtslab.sg
+
+[k8s-masters:children]
+dc1-k8s-masters
+dc2-k8s-masters
+dc3-k8s-masters
+
+[k8s-workers:children]
+dc1-k8s-workers
+dc2-k8s-workers
+dc3-k8s-workers
+
+[k8s-nodes:children]
+dc1-k8s-masters
+dc2-k8s-masters
+dc3-k8s-masters
+dc1-k8s-workers
+dc2-k8s-workers
+dc3-k8s-workers
+
+[all:vars]
+setup=private
+docker_version=20.10.23

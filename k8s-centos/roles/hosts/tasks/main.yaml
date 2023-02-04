@@ -1,0 +1,17 @@
+---
+- name: Set hostname
+  become: yes
+  hostname:
+    name: "{{ hostname }}"
+
+- name: Copy /etc/hosts file
+  copy:
+    src: "hosts"
+    dest: "/etc/hosts"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Set timezone to Asia/Singapore
+  community.general.timezone:
+    name: Asia/Singapore
