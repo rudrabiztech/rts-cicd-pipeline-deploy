@@ -28,6 +28,6 @@ jobs:
           yamllint .
 
       - name: Run ShellCheck
-       uses: ludeeus/action-shellcheck@master
-       with:
-         scandir: './scripts'
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: './scripts'
