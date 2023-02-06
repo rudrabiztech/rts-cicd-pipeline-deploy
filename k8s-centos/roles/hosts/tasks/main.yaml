@@ -1,6 +1,6 @@
 ---
 - name: Set hostname
-  become: yes
+  become: true
   hostname:
     name: "{{ hostname }}"
 
