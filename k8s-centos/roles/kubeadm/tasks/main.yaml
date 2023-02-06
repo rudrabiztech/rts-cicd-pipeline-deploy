@@ -1,3 +1,4 @@
+---
 - name: Remove swapfile from /etc/fstab
   mount:
     name: swap
@@ -11,10 +12,10 @@
   command: setenforce 0
 
 - name: install kubeadm packages
-  become: yes
+  become: true
   yum:
     name: "{{item}}"
-    allow_downgrade: yes
+    allow_downgrade: true
   with_items:
     - kubelet-{{kubelet_version}}
     - kubeadm-{{kubeadm_version}}
