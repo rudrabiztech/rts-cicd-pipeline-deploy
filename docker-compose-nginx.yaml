@@ -1,6 +1,7 @@
 version: '3'
 services:
   npmapp:
+    container_name: npmapp
     image: 'jc21/nginx-proxy-manager:latest'
     depends_on:
       - npmdb
@@ -18,6 +19,7 @@ services:
       - npmapp_data:/data
       - npmapp_letsencrypt:/etc/letsencrypt
   npmdb:
+    container_name: npmadb
     image: 'jc21/mariadb-aria:latest'
     environment:
       MYSQL_ROOT_PASSWORD: ${NPM_MYSQL_ROOT_PASSWORD}
@@ -30,3 +32,8 @@ volumes:
   npmdb_data:
   npmapp_data:
   npmapp_letsencrypt:
+networks:
+  default:
+    external: true
+    name: cicd
+
