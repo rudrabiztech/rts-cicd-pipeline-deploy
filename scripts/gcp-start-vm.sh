@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # set project
 gcloud config set project dockerplay-375923
 
