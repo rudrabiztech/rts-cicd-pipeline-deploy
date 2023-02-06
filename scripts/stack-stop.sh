@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #stop docker sonar container
 docker-compose -f ./docker-compose-sonar.yaml --env-file ./config/.env.dev stop
 
