@@ -27,3 +27,4 @@ Following containers will be created for DevOps enginner to learn and practic CI
    - Node Exporter - monitor vm
    - Prometheus to monitor dockers
    - Loki to collect logs
+- bitwarden - password management tool - https://computingforgeeks.com/running-bitwarden-password-manager-using-docker-container/
