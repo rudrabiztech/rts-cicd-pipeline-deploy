@@ -11,19 +11,8 @@ services:
       - 27017:27017
     volumes:
       - mongodb1_data:/data/db
-  mongodb2:
-    container_name: mongodb2
-    image: mongo:latest
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    ports:
-      - 27018:27017
-    volumes:
-      - mongodb2_data:/data/db
 volumes:
   mongodb1_data:
-  mongodb2_data:
 networks:
   default:
     external: true
