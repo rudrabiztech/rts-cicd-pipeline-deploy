@@ -8,7 +8,7 @@ services:
       POSTGRES_DB: "gitlabhq_production"
       POSTGRES_USER: "gitlab"
       POSTGRES_PASSWORD: "gitlab"
-      POSTGRES_HOST_AUTH_METHOD: "trust" 
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
       - git_postgresql_data:/var/lib/postgresql
     networks:
@@ -28,7 +28,7 @@ services:
     hostname: 'gitlab-docker'
     container_name: gitlab
     depends_on:
-    - gitlab-postgresql
+      - gitlab-postgresql
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         postgresql['enable'] = false
@@ -36,11 +36,11 @@ services:
         gitlab_rails['db_encoding'] = 'unicode'
         gitlab_rails['db_host'] = 'gitlab-postgresql'
         gitlab_rails['db_username'] = 'gitlab'
-        gitlab_rails['db_password'] = 'gitlab' 
+        gitlab_rails['db_password'] = 'gitlab'
         gitlab_rails['db_database'] = "gitlabhq_production"
         redis['enable'] = false
         gitlab_rails['redis_host'] = 'gitlab-redis'
-        gitlab_rails['redis_port'] = '6379'        
+        gitlab_rails['redis_port'] = '6379'
     ports:
       - '8080:80'
       - '8443:443'
@@ -52,7 +52,7 @@ services:
       - gitlab
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
-    container_name: gitlab-runner    
+    container_name: gitlab-runner
     restart: always
     depends_on:
       - gitlab
