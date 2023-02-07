@@ -8,3 +8,6 @@ docker-compose -f ./docker-compose-nginx.yaml --env-file ./config/.env.dev stop
 
 #stop docker container bitwarden
 docker-compose -f ./docker-compose-bitwarden.yaml --env-file ./config/.env.dev stop
+
+#stop docker container mongodb
+docker-compose -f ./docker-compose-mongodb.yaml --env-file ./config/.env.dev stop
