@@ -10,4 +10,4 @@ docker-compose -f ./docker-compose-nginx.yaml --env-file ./config/.env.dev stop
 docker-compose -f ./docker-compose-bitwarden.yaml --env-file ./config/.env.dev stop
 
 #stop docker container gitlab
-docker-compose -f ./docker-compose-gitlab.yml --env-file ./config/.env.dev stop
+docker-compose -f ./docker-compose-gitlab.yaml --env-file ./config/.env.dev stop
