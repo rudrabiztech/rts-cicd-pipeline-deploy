@@ -2,6 +2,7 @@
 version: "3"
 services:
   gitlab-postgresql:
+    container_name: gitlab-postgresql
     hostname: 'gitlab-postgresql'
     image: postgres:12
     environment:
@@ -14,6 +15,8 @@ services:
     networks:
       - gitlab
   gitlab-redis:
+    container_name: gitlab-redis
+    hostname: 'gitlab-redis'
     restart: always
     image: redis:6.2.6
     command:
@@ -25,7 +28,7 @@ services:
   gitlab:
     image: 'gitlab/gitlab-ce:15.8.0-ce.0'
     restart: always
-    hostname: 'gitlab-docker'
+    hostname: 'gitlab'
     container_name: gitlab
     depends_on:
       - gitlab-postgresql
@@ -51,8 +54,9 @@ services:
     networks:
       - gitlab
   gitlab-runner:
-    image: gitlab/gitlab-runner:alpine
     container_name: gitlab-runner
+    image: gitlab/gitlab-runner:alpine
+    container_name: 'gitlab-runner'
     restart: always
     depends_on:
       - gitlab
