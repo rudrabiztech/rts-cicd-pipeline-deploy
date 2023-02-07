@@ -1,3 +1,4 @@
+---
 version: "3"
 services:
   gitlab-postgresql:
@@ -9,21 +10,18 @@ services:
       POSTGRES_PASSWORD: "gitlab"
       POSTGRES_HOST_AUTH_METHOD: "trust" 
     volumes:
-    - git_postgresql_data:/var/lib/postgresql
+      - git_postgresql_data:/var/lib/postgresql
     networks:
       - gitlab
-
   gitlab-redis:
     restart: always
     image: redis:6.2.6
     command:
-    - --loglevel warning
+      - --loglevel warning
     volumes:
-    - redis_data:/data
+      - redis_data:/data
     networks:
-      - gitlab    
-      
-
+      - gitlab
   gitlab:
     image: 'gitlab/gitlab-ce:15.8.0-ce.0'
     restart: always
@@ -52,7 +50,6 @@ services:
       - gitlab_data:/var/opt/gitlab
     networks:
       - gitlab
-
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
     container_name: gitlab-runner    
@@ -63,11 +60,6 @@ services:
       - gitlab_runner:/etc/gitlab-runner
     networks:
       - gitlab
-
-networks:
-  gitlab:
-    name: gitlab-network
-
 volumes:
   gitlab_config:
   gitlab_data:
@@ -75,4 +67,6 @@ volumes:
   git_postgresql_data:
   gitlab_runner:
   redis_data:
-
+networks:
+  gitlab:
+    name: gitlab-network
