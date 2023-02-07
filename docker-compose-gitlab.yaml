@@ -56,7 +56,7 @@ services:
   gitlab-runner:
     container_name: gitlab-runner
     image: gitlab/gitlab-runner:alpine
-    container_name: 'gitlab-runner'
+    hostname: 'gitlab-runner'
     restart: always
     depends_on:
       - gitlab
