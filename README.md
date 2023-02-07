@@ -21,3 +21,10 @@ Following containers will be created for DevOps enginner to learn and practic CI
 - Sonarscan (Static code anylysis)
    1) sonarpgdb - postgresql database for sonar scan
    2) sonar - Application which run sonarscan 'community edition'
+- Repository manager (JFrog) - JFrog offers free downloads and open-source solutions like Artifactory OSS, the world's best open source repository manager, and Conan OSS Package Manager
+- source build and release tool - GoCD is an open source build and release tool from Thoughtworks
+- Grafana: Observablity stack
+   - Node Exporter - monitor vm
+   - Prometheus to monitor dockers
+   - Loki to collect logs
+- bitwarden - password management tool - https://computingforgeeks.com/running-bitwarden-password-manager-using-docker-container/

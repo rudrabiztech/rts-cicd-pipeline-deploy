@@ -1,0 +1,41 @@
+---
+- name: get epel
+  get_url:
+    url: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    dest: /tmp/epel-release-latest-7.noarch.rpm
+
+- name: install epel
+  become: true
+  yum:
+    name: /tmp/epel-release-latest-7.noarch.rpm
+    state: present
+
+- name: install docker dependencies
+  become: true
+  yum:
+    name: "{{item}}"
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+    - policycoreutils-python
+    - python-pip
+
+- name: Installs docker
+  yum:
+    name: docker-ce-{{docker_version}}
+    state: installed
+
+- name: adding docker users (for use without sudo)
+  become: true
+  user:
+    name: "rts"
+    append: true
+    groups: docker
+
+- name: restart docker
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: true
+    enabled: true
