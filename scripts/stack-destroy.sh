@@ -8,3 +8,6 @@ docker-compose -f ./docker-compose-nginx.yaml --env-file ./config/.env.dev down 
 
 #destroy docker gitlab
 docker-compose -f ./docker-compose-gitlab.yaml --env-file ./config/.env.dev down -v
+
+#destry docker container prometheus grafana
+docker-compose -f ./docker-compose-prometheus-grafana.yaml --env-file ./config/.env.dev down -v
