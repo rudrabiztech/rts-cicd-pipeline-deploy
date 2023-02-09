@@ -19,20 +19,3 @@ networks:
   default:
     external: true
     name: cicd
-
-# version: '3.8'
-# services:
-#   jenkins:
-#     container_name: jenkins
-#     restart: always
-#     image: jenkins/jenkins:lts
-#     ports:
-#       - 8080:8080
-#     volumes:
-#       - jenkins-home:/var/jenkins_home
-# volumes:
-#   jenkins-home:
-# networks:
-#   default:
-#     external: true
-#     name: cicd
