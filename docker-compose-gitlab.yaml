@@ -1,0 +1,76 @@
+---
+version: "3"
+services:
+  gitlab-postgresql:
+    container_name: gitlab-postgresql
+    hostname: 'gitlab-postgresql'
+    image: postgres:12
+    environment:
+      POSTGRES_DB: "gitlabhq_production"
+      POSTGRES_USER: "gitlab"
+      POSTGRES_PASSWORD: "gitlab"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - git_postgresql_data:/var/lib/postgresql
+    networks:
+      - gitlab
+  gitlab-redis:
+    container_name: gitlab-redis
+    hostname: 'gitlab-redis'
+    restart: always
+    image: redis:6.2.6
+    command:
+      - --loglevel warning
+    volumes:
+      - redis_data:/data
+    networks:
+      - gitlab
+  gitlab:
+    image: 'gitlab/gitlab-ce:15.8.0-ce.0'
+    restart: always
+    hostname: 'gitlab'
+    container_name: gitlab
+    depends_on:
+      - gitlab-postgresql
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        postgresql['enable'] = false
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'unicode'
+        gitlab_rails['db_host'] = 'gitlab-postgresql'
+        gitlab_rails['db_username'] = 'gitlab'
+        gitlab_rails['db_password'] = 'gitlab'
+        gitlab_rails['db_database'] = "gitlabhq_production"
+        redis['enable'] = false
+        gitlab_rails['redis_host'] = 'gitlab-redis'
+        gitlab_rails['redis_port'] = '6379'
+    ports:
+      - '8080:80'
+      - '8443:443'
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+    networks:
+      - gitlab
+  gitlab-runner:
+    container_name: gitlab-runner
+    image: gitlab/gitlab-runner:alpine
+    hostname: 'gitlab-runner'
+    restart: always
+    depends_on:
+      - gitlab
+    volumes:
+      - gitlab_runner:/etc/gitlab-runner
+    networks:
+      - gitlab
+volumes:
+  gitlab_config:
+  gitlab_data:
+  gitlab_logs:
+  git_postgresql_data:
+  gitlab_runner:
+  redis_data:
+networks:
+  gitlab:
+    name: gitlab-network
