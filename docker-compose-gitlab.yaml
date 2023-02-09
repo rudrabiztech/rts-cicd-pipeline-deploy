@@ -45,7 +45,7 @@ services:
         gitlab_rails['redis_host'] = 'gitlab-redis'
         gitlab_rails['redis_port'] = '6379'
     ports:
-      - '8080:80'
+      - '8070:80'
       - '8443:443'
     volumes:
       - gitlab_config:/etc/gitlab

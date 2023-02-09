@@ -1,3 +1,5 @@
 #Prod docker env file
 config/.env.dev
 config/.env.prod
+terraform/.*
+.terraform.lock.hcl
