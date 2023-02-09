@@ -1,0 +1,19 @@
+---
+version: '3.7'
+services:
+  mongodb1:
+    container_name: mongodb1
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb1_data:/data/db
+volumes:
+  mongodb1_data:
+networks:
+  default:
+    external: true
+    name: cicd
