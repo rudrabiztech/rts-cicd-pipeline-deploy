@@ -14,3 +14,6 @@ docker-compose -f ./docker-compose-bitwarden.yaml --env-file ./config/.env.dev u
 
 # start docker container gitlab
 docker-compose -f ./docker-compose-gitlab.yaml --env-file ./config/.env.dev up -d
+
+# start docker container mongodb
+docker-compose -f ./docker-compose-mongodb.yaml --env-file ./config/.env.dev up -d
