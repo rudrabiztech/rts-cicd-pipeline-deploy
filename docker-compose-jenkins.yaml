@@ -1,5 +1,5 @@
 ---
-version: '3.8'
+version: '3.7'
 services:
   jenkins:
     image: jenkins/jenkins:lts
@@ -7,11 +7,12 @@ services:
     privileged: true
     user: root
     ports:
-      - 8080:8080
-      - 50000:50000
+      - 8090:8080
+#      - 50000:50000
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
+      # - /usr/local/bin/docker:/usr/local/bin/docker
 volumes:
   jenkins_home:
 networks:

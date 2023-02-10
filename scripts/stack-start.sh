@@ -15,8 +15,13 @@ docker-compose -f ./docker-compose-bitwarden.yaml --env-file ./config/.env.dev u
 # start docker container gitlab
 docker-compose -f ./docker-compose-gitlab.yaml --env-file ./config/.env.dev up -d
 
-# start docker container for prometheus/grafana
+# start docker container for prometheus-grafana
 docker-compose -f ./docker-compose-prometheus-grafana.yaml --env-file ./config/.env.dev up -d
+
+
+# start docker container for jenkins
+docker-compose -f ./docker-compose-jenkins.yaml --env-file ./config/.env.dev up -d
 
 # start docker container for mongodb
 docker-compose -f ./docker-compose-mongodb.yaml --env-file ./config/.env.dev up -d
+

@@ -11,9 +11,7 @@ services:
       POSTGRES_PASSWORD: "gitlab"
       POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
-      - git_postgresql_data:/var/lib/postgresql
-    networks:
-      - gitlab
+      - gitlab_pg_data:/var/lib/postgresql
   gitlab-redis:
     container_name: gitlab-redis
     hostname: 'gitlab-redis'
@@ -22,9 +20,7 @@ services:
     command:
       - --loglevel warning
     volumes:
-      - redis_data:/data
-    networks:
-      - gitlab
+      - gitlab_redis_data:/data
   gitlab:
     image: 'gitlab/gitlab-ce:15.8.0-ce.0'
     restart: always
@@ -45,14 +41,12 @@ services:
         gitlab_rails['redis_host'] = 'gitlab-redis'
         gitlab_rails['redis_port'] = '6379'
     ports:
-      - '8080:80'
+      - '8070:80'
       - '8443:443'
     volumes:
       - gitlab_config:/etc/gitlab
       - gitlab_logs:/var/log/gitlab
       - gitlab_data:/var/opt/gitlab
-    networks:
-      - gitlab
   gitlab-runner:
     container_name: gitlab-runner
     image: gitlab/gitlab-runner:alpine
@@ -62,15 +56,14 @@ services:
       - gitlab
     volumes:
       - gitlab_runner:/etc/gitlab-runner
-    networks:
-      - gitlab
 volumes:
   gitlab_config:
   gitlab_data:
   gitlab_logs:
-  git_postgresql_data:
+  gitlab_pg_data:
   gitlab_runner:
-  redis_data:
+  gitlab_redis_data:
 networks:
-  gitlab:
-    name: gitlab-network
+  default:
+    external: true
+    name: cicd

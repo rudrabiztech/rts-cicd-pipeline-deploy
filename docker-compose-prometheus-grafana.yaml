@@ -5,7 +5,7 @@ services:
     image: 'prom/prometheus:v2.41.0'
     container_name: prometheus
     volumes:
-      - './prometheus-grafana/prometheus:/etc/prometheus'
+      - 'prometheus:/etc/prometheus'
       - 'prometheus_data:/prometheus'
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -23,7 +23,7 @@ services:
     image: 'prom/alertmanager:v0.25.0'
     container_name: alertmanager
     volumes:
-      - './prometheus-grafana/alertmanager:/etc/alertmanager'
+      - alertmanager:/etc/alertmanager
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
@@ -70,11 +70,9 @@ services:
     image: 'grafana/grafana:9.3.2'
     container_name: grafana
     volumes:
-      - 'grafana_data:/var/lib/grafana'
-      - >-
-        ./prometheus-grafana/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - >-
-        ./prometheus-grafana/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
+      - grafana_dashboards:/etc/grafana/provisioning/dashboards
+      - grafana_datasources:/etc/grafana/provisioning/datasources
     environment:
       - 'GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}'
       - 'GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}'
@@ -92,10 +90,14 @@ services:
       - '9091:9091'
     labels:
       org.label-schema.group: monitoring
+volumes:
+  prometheus_data: null
+  grafana_data: null
+  alertmanager:
+  prometheus:
+  grafana_dashboards:
+  grafana_datasources:
 networks:
   default:
     external: true
     name: cicd
-volumes:
-  prometheus_data: null
-  grafana_data: null

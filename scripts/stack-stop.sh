@@ -15,5 +15,8 @@ docker-compose -f ./docker-compose-gitlab.yaml --env-file ./config/.env.dev stop
 # stop docker container prometheus grafana
 docker-compose -f ./docker-compose-prometheus-grafana.yaml --env-file ./config/.env.dev stop
 
+# stop docker container jenkins
+docker-compose -f ./docker-compose-jenkins.yaml --env-file ./config/.env.dev stop
+
 #stop docker container mongodb
 docker-compose -f ./docker-compose-mongodb.yaml --env-file ./config/.env.dev stop
