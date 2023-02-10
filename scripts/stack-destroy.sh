@@ -11,3 +11,6 @@ docker-compose -f ./docker-compose-gitlab.yaml --env-file ./config/.env.dev down
 
 #destry docker container prometheus grafana
 docker-compose -f ./docker-compose-prometheus-grafana.yaml --env-file ./config/.env.dev down -v
+
+#destroy docker mongodb
+docker-compose -f ./docker-compose-mongodb.yaml --env-file ./config/.env.dev down -v
