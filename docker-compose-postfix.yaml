@@ -1,0 +1,24 @@
+---
+version: '3.7'
+services:
+  postfix:
+    image: boky/postfix
+    container_name: postfix
+    ports:
+      - "127.0.0.1:587:587"
+    environment:
+      HOSTNAME: ${POSTFIX_HOSTNAME}
+      RELAYHOST: ${POSTFIX_RELAYHOST}
+      RELAYHOST_USERNAME: ${POSTFIX_RELAYHOST_USERNAME}
+      RELAYHOST_PASSWORD: ${POSTFIX_RELAYHOST_PASSWORD}
+      RELAYHOST_TLS_LEVEL: "verify"
+      ALLOWED_SENDER_DOMAINS: gmail.com
+    volumes:
+      - postfix_data:/var/spool/postfix
+    restart: always
+volumes:
+  postfix_data:
+networks:
+  default:
+    external: true
+    name: cicd
