@@ -40,6 +40,11 @@ services:
         redis['enable'] = false
         gitlab_rails['redis_host'] = 'gitlab-redis'
         gitlab_rails['redis_port'] = '6379'
+        # HTTPS Setup
+        letsencrypt['enable'] = false
+        external_url 'https://gitlab.rudratechsolutions.com'
+        gitlab_rails['gitlab_https'] = true
+        gitlab_rails['gitlab_port'] = 443
     ports:
       - '8070:80'
       - '8443:443'

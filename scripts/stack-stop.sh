@@ -20,3 +20,6 @@ docker-compose -f ./docker-compose-jenkins.yaml --env-file ./config/.env.dev sto
 
 #stop docker container mongodb
 docker-compose -f ./docker-compose-mongodb.yaml --env-file ./config/.env.dev stop
+
+#stop docker container postfix
+docker-compose -f ./docker-compose-postfix.yaml --env-file ./config/.env.dev stop
