@@ -1,36 +1,36 @@
 ---
 version: "3"
 services:
-  # gitlab-postgresql:
-  #   container_name: gitlab-postgresql
-  #   hostname: 'gitlab-postgresql'
-  #   image: postgres:12
-  #   environment:
-  #     POSTGRES_DB: "gitlabhq_production"
-  #     POSTGRES_USER: "gitlab"
-  #     POSTGRES_PASSWORD: "gitlab"
-  #     POSTGRES_HOST_AUTH_METHOD: "trust"
-  #   volumes:
-  #     - gitlab_pg_data:/var/lib/postgresql
-  # gitlab-redis:
-  #   container_name: gitlab-redis
-  #   hostname: 'gitlab-redis'
-  #   restart: always
-  #   image: redis:6.2.6
-  #   command:
-  #     - --loglevel warning
-  #   depends_on:
-  #     - gitlab-postgresql
-  #   volumes:
-  #     - gitlab_redis_data:/data
+  gitlab-postgresql:
+    container_name: gitlab-postgresql
+    hostname: 'gitlab-postgresql'
+    image: postgres:12
+    environment:
+      POSTGRES_DB: "gitlabhq_production"
+      POSTGRES_USER: "gitlab"
+      POSTGRES_PASSWORD: "gitlab"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - gitlab_pg_data:/var/lib/postgresql
+  gitlab-redis:
+    container_name: gitlab-redis
+    hostname: 'gitlab-redis'
+    restart: always
+    image: redis:6.2.6
+    command:
+      - --loglevel warning
+    depends_on:
+      - gitlab-postgresql
+    volumes:
+      - gitlab_redis_data:/data
   gitlab:
     image: 'gitlab/gitlab-ce:15.8.0-ce.0'
     restart: always
     hostname: 'gitlab'
     container_name: gitlab
-    # depends_on:
-      # - gitlab-postgresql
-      # - gitlab-redis
+    depends_on:
+      - gitlab-postgresql
+      - gitlab-redis
     ports:
       - '8070:80'
       - '8443:443'
@@ -38,15 +38,15 @@ services:
       - gitlab_config:/etc/gitlab
       - gitlab_logs:/var/log/gitlab
       - gitlab_data:/var/opt/gitlab
-  # gitlab-runner:
-  #   container_name: gitlab-runner
-  #   image: gitlab/gitlab-runner:alpine
-  #   hostname: 'gitlab-runner'
-  #   restart: always
-  #   depends_on:
-  #     - gitlab
-  #   volumes:
-  #     - gitlab_runner:/etc/gitlab-runner
+  gitlab-runner:
+    container_name: gitlab-runner
+    image: gitlab/gitlab-runner:alpine
+    hostname: 'gitlab-runner'
+    restart: always
+    depends_on:
+      - gitlab
+    volumes:
+      - gitlab_runner:/etc/gitlab-runner
 volumes:
   gitlab_config:
   gitlab_data:
