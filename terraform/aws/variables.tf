@@ -3,9 +3,19 @@ variable "region" {
   default = "ap-southeast-1"
 }
 
+variable "sg-az1" {
+  type    = string
+  default = "ap-southeast-1a"
+}
+
+variable "sg-az2" {
+  type    = string
+  default = "ap-southeast-1b"
+}
+
 variable "vpc_cidr_block" {
   type    = string
-  default = "10.0.0.0/16"
+  default = "10.1.0.0/16"
 }
 
 variable "aws-mysg-1a-web" {
