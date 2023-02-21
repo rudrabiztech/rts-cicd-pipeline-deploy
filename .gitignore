@@ -3,3 +3,4 @@ config/.env.dev
 config/.env.prod
 terraform/.*
 .terraform.lock.hcl
+terraform/aws/.*
