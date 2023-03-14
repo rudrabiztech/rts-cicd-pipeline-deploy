@@ -1,6 +1,16 @@
 ---
 version: '3'
 services:
+  grafana:
+    image: 'grafana/grafana:9.3.2'
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - grafana_dashboards:/etc/grafana/provisioning/dashboards
+      - grafana_datasources:/etc/grafana/provisioning/datasources
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
   prometheus:
     image: 'prom/prometheus:v2.41.0'
     container_name: prometheus
