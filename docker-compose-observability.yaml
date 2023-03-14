@@ -1,0 +1,46 @@
+---
+version: '3'
+services:
+  prometheus:
+    image: 'prom/prometheus:v2.41.0'
+    container_name: prometheus
+    volumes:
+      - 'prometheus:/etc/prometheus'
+      - 'prometheus_data:/prometheus'
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    ports:
+      - '9090:9090'
+    labels:
+      org.label-schema.group: monitoring
+  nodeexporter:
+    image: 'prom/node-exporter:v1.5.0'
+    container_name: nodeexporter
+    volumes:
+      - '/proc:/host/proc:ro'
+      - '/sys:/host/sys:ro'
+      - '/:/rootfs:ro'
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - >-
+        --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)
+    restart: unless-stopped
+    ports:
+      - '9100:9100'
+    labels:
+      org.label-schema.group: monitoring
+volumes:
+  prometheus_data: null
+  prometheus:
+networks:
+  default:
+    external: true
+    name: cicd
