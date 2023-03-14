@@ -50,6 +50,9 @@ services:
 volumes:
   prometheus_data: null
   prometheus:
+  grafana_data: 
+  grafana_dashboards:
+  grafana_datasources:  
 networks:
   default:
     external: true
